@@ -5,7 +5,7 @@
 The code is written in Python, and some packages should be installed before the scripts can be executed smoothly.  
   * Package [pandas](https://pandas.pydata.org/pandas-docs/stable/index.html) is a fast, BSD-licensed library that provides high-performance data structures and data analysis tools.
   * Package [numpy](https://numpy.org/doc/stable/) is the fundamental package for scientific computing.
-  * Package [statsmodels] (https://www.statsmodels.org/stable/index.html) is used to estimate statistical models.
+  * Package [statsmodels](https://www.statsmodels.org/stable/index.html) is used to estimate statistical models.
   * Package [pvlib](https://pvlib-python.readthedocs.io/en/stable/) provides functions for simulating the performance of PV systems.
   * Package [scipy](https://scipy.org/) provides algorithms for scientific computing.
   * Package [sklearn](https://scikit-learn.org/stable/) is the basic package for machine learning.
