@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Apr  3 09:25:53 2022
-
-@author: Wenting Wang
+author: Wenting Wang
+School of Electrical Engineering and Automation
+Harbin Institute of Technology
+email: wangwenting3000@gmail.com
 """
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ from statsmodels.distributions.empirical_distribution import ECDF
 # 6. Clear sky BNI. Clear sky beam irradiation on mobile plane following the sun at normal incidence (Wh/m2)
 
 # read McClear of Jacumba
-metadata_McClear = pd.read_csv('C:/WWT/论文/ECMWF_ENS/supplementary material/model chain/data/McClear_Jacumba.csv',sep=';')
+metadata_McClear = pd.read_csv('C:/supplementary material/model chain/data/McClear_UPV.csv',sep=';')
 # extract two columns: "Observation period" and "Clear sky GHI"
 # "Observation period": beginning/end of the time period with the format "yyyy-mm-ddTHH:MM:SS.S/yyyy-mm-ddTHH:MM:SS.S" (ISO 8601)
 McClear = metadata_McClear[["Observation period","Clear sky GHI","Clear sky DHI","Clear sky BNI"]]
@@ -69,7 +71,7 @@ McClear_agg_1h_advance_30min = McClear_agg_1h_advance_30min["2017-01-01 01:00:00
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 # read ECMWF ensemble forecasts at Jacumba
-metadata_ENS_Jacumba = pd.read_csv('C:/WWT/论文/ECMWF_ENS/supplementary material/model chain/data/Jacumba_ENS.csv', index_col=1)
+metadata_ENS_Jacumba = pd.read_csv('C:/supplementary material/model chain/data/ENS_UPV.csv', index_col=1)
 metadata_ENS_Jacumba = metadata_ENS_Jacumba.iloc[:,1:]
 # update index type
 ENS_Jacumba_time = pd.date_range(start='2017-01-01 01:00:00', end='2020-12-31 23:00:00', freq='1h')
@@ -108,7 +110,11 @@ for i in range(len(metadata_ENS_Jacumba_kappa)):
     # probability density
     dens = np.exp(log_dens)
     # a = (dens*0.001).sum()
+    
     beta = -2
+    # when calculate \beta-median (\beta=1), please change this
+    # beta = 1
+    
     
     fy_beta = x_sample**beta
     fy1 = pd.DataFrame(data=fy_beta,columns=['fy_beta'])
@@ -148,7 +154,7 @@ ENS_median_neg_1_Jacumba_p = ENS_median_neg_1_Jacumba_p['member_median_neg_1'].a
 # Actually, index in dataframe "metadata_HRES" is ECMWF time stamp. e.g., 2017-01-01 01:00:00 is period 2017-01-01 00:00:00 ~ 2017-01-01 01:00:00
 # Note that we moved all the ensemble forecasts forward by half an hour. 
 # Unfortunately, we have no way to align the time stamp of the ENS, which is pushed back half an hour, with the time stamp of the HRES.
-metadata_HRES = pd.read_csv('C:/WWT/论文/ECMWF_ENS/supplementary material/model chain/data/ECMWF_HRES.csv', index_col=0)
+metadata_HRES = pd.read_csv('C:/supplementary material/model chain/data/HRES_UPV.csv', index_col=0)
 # extract four variables, namely, "u10", "v10", "t2m", "d2m"
 weather_HRES = metadata_HRES[['u10','v10','t2m','d2m']]
 # relative humidity
@@ -201,7 +207,7 @@ plt.plot(d['zenith'], d['Clear sky GHI'])
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 # download modeled generation estimates (regard as real PV AC power)
 # source: https://data.openei.org/submissions/4503
-real_PV = pd.read_csv('C:/WWT/论文/ECMWF_ENS/supplementary material/model chain/data/60947.csv', index_col=0)
+real_PV = pd.read_csv('C:/supplementary material/model chain/data/simulated_UPV.csv', index_col=0)
 real_PV.index = pd.date_range(start='2017-01-01 08:00:00', end='2021-01-01 07:00:00', freq='1h', tz='UTC')
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
