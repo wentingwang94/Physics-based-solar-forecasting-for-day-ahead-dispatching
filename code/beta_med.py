@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Mar 31 11:09:24 2022
-
-@author: 81095
+author: Wenting Wang 
+School of Electrical Engineering and Automation
+Harbin Institute of Technology
+email: wangwenting3000@gmail.com
 """
 
 
@@ -23,7 +25,8 @@ from statsmodels.distributions.empirical_distribution import ECDF
 
 #---------------------------------------------------------------------------------------------------------------
 # load data
-metadata = pd.read_csv('C:/WWT/论文/ECMWF_ENS/supplementary material/beta_meidan/data/BON_ENS.csv', index_col=0)
+# users can repalce this file with "PSU_ENS.csv" etc..
+metadata = pd.read_csv('C:/supplementary material/beta_meidan/data/BON_ENS.csv', index_col=0)
 # find zenith > 85 degree
 metadata.loc[metadata['Solar Zenith Angle'] > 85,'NSRDB_GHI'] = np.nan
 metadata = metadata.dropna()
