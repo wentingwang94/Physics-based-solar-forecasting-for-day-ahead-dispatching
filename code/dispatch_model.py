@@ -240,9 +240,9 @@ SOC_min[20] = 20
 PV[15] = 200                  # node 16
 PV[20] = 200                  # node 21
 PV[22] = 200                  # node 23
-PV[6] = 200                   # node 7
-PV[2] = 200                   # node 3
-PV[4] = 200                   # node 5
+# PV[6] = 200                   # node 7
+# PV[2] = 200                   # node 3
+# PV[4] = 200                   # node 5
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -416,13 +416,13 @@ M.write('M.lp')
 
 # record results
 battery_SOC  = np.zeros((2,  N_t+1))
-source_P_PV  = np.zeros((6,  N_t+1))
+source_P_PV  = np.zeros((3,  N_t+1))
 source_P_TG  = np.zeros((6, N_t+1))
 battery_P_c  = np.zeros((2,  N_t+1))
 battery_P_d  = np.zeros((2,  N_t+1))
 # curtail_load = np.zeros(())
 curtail_load = np.zeros((30, N_t+1))
-curtail_PV   = np.zeros((6,  N_t+1))
+curtail_PV   = np.zeros((3,  N_t+1))
 
 for t in range(1,8761):
     battery_SOC[0, t] = SOC[18,t-1].X            * Sbase
@@ -434,15 +434,15 @@ for t in range(1,8761):
     source_P_PV[0, t] = P_PV[15, t-1].X          * Sbase
     source_P_PV[1, t] = P_PV[20, t-1].X          * Sbase
     source_P_PV[2, t] = P_PV[22, t-1].X          * Sbase
-    source_P_PV[3, t] = P_PV[2, t-1].X          * Sbase
-    source_P_PV[4, t] = P_PV[4, t-1].X          * Sbase
-    source_P_PV[5, t] = P_PV[6, t-1].X          * Sbase
+#     source_P_PV[3, t] = P_PV[2, t-1].X          * Sbase
+#     source_P_PV[4, t] = P_PV[4, t-1].X          * Sbase
+#     source_P_PV[5, t] = P_PV[6, t-1].X          * Sbase
     curtail_PV[0, t] = P_PV_curt[15, t-1].X      * Sbase
     curtail_PV[1, t] = P_PV_curt[20, t-1].X      * Sbase
     curtail_PV[2, t] = P_PV_curt[22, t-1].X      * Sbase
-    curtail_PV[3, t] = P_PV_curt[2, t-1].X      * Sbase
-    curtail_PV[4, t] = P_PV_curt[4, t-1].X      * Sbase
-    curtail_PV[5, t] = P_PV_curt[6, t-1].X      * Sbase
+#     curtail_PV[3, t] = P_PV_curt[2, t-1].X      * Sbase
+#     curtail_PV[4, t] = P_PV_curt[4, t-1].X      * Sbase
+#     curtail_PV[5, t] = P_PV_curt[6, t-1].X      * Sbase
     for i in range(6):
         source_P_TG[i, t] = P_TG[i, t-1].X       * Sbase    
     for i in range(30):
