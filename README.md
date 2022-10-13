@@ -1,4 +1,4 @@
-# Physics-based-solar-forecasting-for-power-system-day-ahead-dispatching
+# Physics-based-solar-forecasting-for-power-system-day-ahead-scheduling
 
 
 ### Requirments：
